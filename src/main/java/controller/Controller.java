@@ -32,8 +32,8 @@ public class Controller implements Initializable {
     private TextArea keyField;
 
     @FXML
-    private void encryptAction(ActionEvent event) {
-
+    private void encryptAction(javafx.event.ActionEvent actionEvent) {
+        model.encrypt(encPath.getText(), encPass.getText());
     }
 
     @FXML
@@ -56,6 +56,7 @@ public class Controller implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        model = new Model();
     }
+
 }

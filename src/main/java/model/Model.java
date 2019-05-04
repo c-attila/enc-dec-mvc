@@ -2,15 +2,21 @@ package model;
 
 public class Model {
 
-    private void encrypt(String encPath, String encPass) {
+    public void encrypt(String encPath, String encPass) {
+        try {
+            EncDec.FileEncryption.encryptFile(encPath, encPass);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("encryptFile exception");
+        }
 
     }
 
-    private void decrypt(String decPath, String encPath) {
+    public void decrypt(String decPath, String encPath) {
 
     }
 
-    private String generate() {
+    public String generate() {
 
         return "";
     }
