@@ -24,7 +24,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>src.main.java.sample.AppLauncher</mainClass>
+          <mainClass>src.main.java.controller.AppLauncher</mainClass>
         </configuration>
       </plugin>
       <plugin>
@@ -54,7 +54,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>src.main.java.sample.AppLauncher</mainClass>
+                  <mainClass>src.main.java.controller.AppLauncher</mainClass>
                 </transformer>
               </transformers>
             </configuration>
