@@ -11,6 +11,6 @@ public class RSATester {
         RSA.encodeDecode("Brie Larson Oscar-díjas amerikai színésznő, énekesnő, filmrendező és aktivista. A kaliforniai Sacramentóban született 1989. október 1-jén. Otthon folytatta iskolai tanulmányait, majd színészetet kezdett tanulni az American Conservatory Theaterben, ahová minden idők legfiatalabb diákjaként vették fel.");
         System.out.println();
 
-        RSA.printRandomKeys();
+        System.out.println(RSA.getRandomKeys());
     }
 }

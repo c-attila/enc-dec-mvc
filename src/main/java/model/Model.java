@@ -12,12 +12,16 @@ public class Model {
 
     }
 
-    public void decrypt(String decPath, String encPath) {
-
+    public void decrypt(String decPath, String decPass) {
+        try {
+            EncDec.FileDecryption.decryptFile(decPath, decPass);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("decryptFile exception");
+        }
     }
 
     public String generate() {
-
-        return "";
+        return RSA.RSA.getRandomKeys();
     }
 }

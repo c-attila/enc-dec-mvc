@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,13 +36,13 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void decryptAction(ActionEvent event) {
-
+    private void decryptAction(javafx.event.ActionEvent actionEvent) {
+        model.decrypt(decPath.getText(), decPass.getText());
     }
 
     @FXML
-    private void generateAction(ActionEvent event) {
-
+    private void generateAction(javafx.event.ActionEvent actionEvent) {
+        keyField.setText(model.generate());
     }
 
     /**

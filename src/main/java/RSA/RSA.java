@@ -96,7 +96,7 @@ public class RSA {
     /**
      * Prints randomly generated EncDecMVC.RSA keys.
      * Implements the EncDecMVC.RSA algorithm. */
-    public static void printRandomKeys() {
+    public static String getRandomKeys() {
         BigInteger p = pickPrime();
         BigInteger q = pickPrime();
 
@@ -114,9 +114,9 @@ public class RSA {
         while (d.compareTo(BigInteger.ZERO) < 0)
             d = d.add(fin);
 
-        System.out.println("Private key (d):        " + d);
-        System.out.println("Public exponent (e):    " + e);
-        System.out.println("Modulus (n):            " + n);
+        String keysAsText = "Private key (d):        " + d + "\n" + "Public exponent (e):    " + e + "\n" + "Modulus (n):            " + n + "\n";
+
+        return keysAsText;
     }
 
     /**
