@@ -103,7 +103,7 @@ public class Exponentiation {
      * @param remainders the remainders to be multiplied
      * @return the final result of the modular exponentiation.
      */
-    public static BigInteger getProduct(List<Integer> exponents, BigInteger[] remainders) {
+     static BigInteger getProduct(List<Integer> exponents, BigInteger[] remainders) {
         BigInteger product = BigInteger.ONE;
 
         for (int i : exponents) {
@@ -122,13 +122,12 @@ public class Exponentiation {
      * @param n the modulus
      * @return the remainder of the exponentiation
      */
-    static BigInteger getRemainder(BigInteger g, BigInteger e, BigInteger n) {
+    public static BigInteger getRemainder(BigInteger g, BigInteger e, BigInteger n) {
         if (g.equals(BigInteger.ZERO))
             return BigInteger.ZERO;
-        else if (e.compareTo(BigInteger.ONE) == -1  || n.compareTo(BigInteger.ONE) == -1) {
-            System.out.println(g + " " + e + " " + n + " " + "The numbers must be positive.");
-            return BigInteger.valueOf(-1);
-        } else {
+        else if (n.compareTo(BigInteger.ZERO) <= 0)
+            throw new ArithmeticException("Modulus should be positive.");
+        else {
             try {
                 BigInteger product = getProduct(getExponents(e), getExponentRemainders(getGreatestExponent(e), g, n));
                 return product.mod(n);
