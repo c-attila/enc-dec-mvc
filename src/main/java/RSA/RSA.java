@@ -33,6 +33,13 @@ public class RSA {
         return c;
     }
 
+    /** Converts the <code>c</code> array of ASCII codes to string.*/
+    static String ASCIIToString(BigInteger[] c) {
+        String m = "";
+        for (BigInteger bigInteger : c) m = m + (char) bigInteger.intValue();
+        return m;
+    }
+
     /** Prints the <code>m</code> string as ASCII codes.*/
     static void printAscii(String m) {
         for (int i = 0; i < m.length(); i++)
@@ -121,13 +128,14 @@ public class RSA {
 
     /**
      * Implements the EncDecMVC.RSA algorithm to generate random keys and encodes/decodes with it.
-     * Uses the Chinese remainder theorem
-     * from the {@link #decodeEncrypted(BigInteger[], BigInteger, BigInteger, BigInteger)} method
+     * Uses the Chinese remainder theorem from the
+     * {@link #decodeEncrypted(BigInteger[], BigInteger, BigInteger, BigInteger)} method
      * and the Extended Euclidean Algorithm from the <code>GCD</code> class.
      *
      * @param m the message to be encoded/decoded
+     * @return the <code>m</code> string encoded and decoded back
      * */
-    public static void encodeDecode(String m){
+    public static String encodeDecode(String m){
         BigInteger p = pickPrime();
         BigInteger q = pickPrime();
 
@@ -156,6 +164,8 @@ public class RSA {
         printC(c);
         System.out.print("The message:    ");
         printChar(c);
+
+        return ASCIIToString(c);
     }
 
     public static void main(String[] args) {
