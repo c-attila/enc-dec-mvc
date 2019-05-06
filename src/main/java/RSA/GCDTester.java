@@ -12,7 +12,6 @@ public class GCDTester {
         System.out.println();
         GCD.printTable(GCD.getTable(BigInteger.valueOf(47), BigInteger.valueOf(31)));
         System.out.println();
-
     }
 
 }

@@ -43,6 +43,18 @@ public class GCD {
      * @return the <code>table</code>, produced by the EEA
      */
     public static BigInteger[][] getTable(BigInteger r, BigInteger e) {
+        if (r.equals(BigInteger.ZERO) && e.equals(BigInteger.ZERO))
+            throw new ArithmeticException("GCD of 0 and 0 is not defined.");
+        else if (r.equals(BigInteger.ZERO)) {
+            BigInteger[][] res = new BigInteger[1][1];
+            res[0][0] = e;
+            return res;
+        }
+        else if (e.equals(BigInteger.ZERO)) {
+            BigInteger[][] res = new BigInteger[1][1];
+            res[0][0] = r;
+            return res;
+        }
         int n = getLength(r, e);
         BigInteger[][] table = new BigInteger[4][n + 1];
         table[0][0] = r;
