@@ -11,6 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import model.Model;
 
+/**
+ * Controls the GUI and the business logic.
+ */
 public class Controller implements Initializable {
 
     private Model model;

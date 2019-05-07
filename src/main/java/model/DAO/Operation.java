@@ -3,6 +3,9 @@ package model.DAO;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+/**
+ * An <code>object</code> that represents operations.
+ */
 @Entity
 @Table(name = "Operation")
 public class Operation {
@@ -11,12 +14,22 @@ public class Operation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    /**
+     * An operation that was made. Can be file encryption, file decryption or RSA key generation.
+     */
     @Column(name = "Operation_type")
     private String operationType;
 
+    /**
+     * The file on which the operation was made.
+     * - symbol if the operation was key generation.
+     */
     @Column(name = "File")
     private String path;
 
+    /**
+     * The date and time of the operation.
+     */
     @Column(name = "Date")
     private java.sql.Timestamp date;
 

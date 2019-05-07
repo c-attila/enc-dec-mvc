@@ -1,11 +1,22 @@
 package RSA;
 
+import EncDec.FileEncryption;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Class implementing the modular exponentiation algorithm. */
+/**
+ * Class implementing the modular exponentiation algorithm.
+ */
 public class Exponentiation {
+
+    /**
+     * <code>Logger</code> instance for logging.
+     */
+    private static Logger logger = LogManager.getLogger(FileEncryption.class);
 
     /**
      * Returns the remainder when an integer x raised to the yth power, x^y, is divided by an integer n.
@@ -40,6 +51,9 @@ public class Exponentiation {
     /**
      * Returns the greatest exponent of the parameter's binary representation.
      * Used for the method {@link #getExponents(BigInteger)}
+     *
+     * @param e the exponent
+     * @return the greatest exponent
      */
     static int getGreatestExponent(BigInteger e) {
         int i = 0;
@@ -60,12 +74,12 @@ public class Exponentiation {
         int i = getGreatestExponent(e);
 
         exponents.add(i - 1 > 0 ? i - 1 : 0);
-        e = e.subtract(BigInteger.valueOf((long)Math.pow(2, i - 1 > 0 ? i - 1 : 0)));
-        int j = i-2;
+        e = e.subtract(BigInteger.valueOf((long) Math.pow(2, i - 1 > 0 ? i - 1 : 0)));
+        int j = i - 2;
         while (j >= 0) {
             if (e.compareTo(BigInteger.valueOf((long) Math.pow(2, j))) >= 0) {
                 exponents.add(j);
-                e = e.subtract(BigInteger.valueOf((long)Math.pow(2, j)));
+                e = e.subtract(BigInteger.valueOf((long) Math.pow(2, j)));
             }
             j--;
         }
@@ -77,8 +91,8 @@ public class Exponentiation {
      * The remainders got from the given integer's division with remainder.
      *
      * @param greatestExponent greatest exponent got from {@link #getGreatestExponent(BigInteger)}
-     * @param g the given integer
-     * @param n the modulus used for the division with remainder
+     * @param g                the given integer
+     * @param n                the modulus used for the division with remainder
      * @return the remainders used to calculate the product with {@link #getProduct(List, BigInteger[])}
      */
     static BigInteger[] getExponentRemainders(int greatestExponent, BigInteger g, BigInteger n) {
@@ -86,9 +100,9 @@ public class Exponentiation {
         remainders[0] = g;
         for (int i = 1; i < greatestExponent; i++) {
             try {
-                remainders[i] = (remainders[i-1].pow(2)).mod(n);
+                remainders[i] = (remainders[i - 1].pow(2)).mod(n);
             } catch (ArithmeticException e) {
-                System.out.println("Can't divide by 0.");
+                logger.error("Can't divide by 0.");
                 break;
             }
         }
@@ -99,11 +113,11 @@ public class Exponentiation {
     /**
      * Multiplies all the exponents.
      *
-     * @param exponents the exponents, representing the remainders to be multiplied
+     * @param exponents  the exponents, representing the remainders to be multiplied
      * @param remainders the remainders to be multiplied
      * @return the final result of the modular exponentiation.
      */
-     static BigInteger getProduct(List<Integer> exponents, BigInteger[] remainders) {
+    static BigInteger getProduct(List<Integer> exponents, BigInteger[] remainders) {
         BigInteger product = BigInteger.ONE;
 
         for (int i : exponents) {
@@ -132,7 +146,7 @@ public class Exponentiation {
                 BigInteger product = getProduct(getExponents(e), getExponentRemainders(getGreatestExponent(e), g, n));
                 return product.mod(n);
             } catch (ArithmeticException exc) {
-                System.out.println("Can't divide by 0.");
+                logger.error("Can't divide by 0.");
             }
             return BigInteger.valueOf(-1);
         }

@@ -2,10 +2,16 @@ package RSA;
 
 import java.math.BigInteger;
 
-/** Class implementing the Extended Euclidean algorithm. */
+/**
+ * Class implementing the Extended Euclidean algorithm.
+ */
 public class GCD {
 
-    /** Prints the 2D array <code>table</code>. */
+    /**
+     * Prints the 2D array <code>table</code>.
+     *
+     * @param table the table to be printed
+     */
     static void printTable(BigInteger[][] table) {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < table[i].length; j++)
@@ -49,8 +55,7 @@ public class GCD {
             BigInteger[][] res = new BigInteger[1][1];
             res[0][0] = e;
             return res;
-        }
-        else if (e.equals(BigInteger.ZERO)) {
+        } else if (e.equals(BigInteger.ZERO)) {
             BigInteger[][] res = new BigInteger[1][1];
             res[0][0] = r;
             return res;
@@ -68,11 +73,11 @@ public class GCD {
         for (int i = 2; i < n + 1; i++) {
             table[0][i] = table[0][i - 2].mod(table[0][i - 1]);
             table[1][i] = table[0][i - 1].divide(table[0][i]);
-            table[2][i] = (table[1][i-1].multiply(table[2][i - 1])).add(table[2][i - 2]);
-            table[3][i] = (table[1][i-1].multiply(table[3][i - 1])).add(table[3][i - 2]);
+            table[2][i] = (table[1][i - 1].multiply(table[2][i - 1])).add(table[2][i - 2]);
+            table[3][i] = (table[1][i - 1].multiply(table[3][i - 1])).add(table[3][i - 2]);
         }
         table[2][n] = BigInteger.valueOf(-1).pow(n).multiply(table[2][n]);
-        table[3][n] = BigInteger.valueOf(-1).pow(n+1).multiply(table[3][n]);
+        table[3][n] = BigInteger.valueOf(-1).pow(n + 1).multiply(table[3][n]);
 
         return table;
     }

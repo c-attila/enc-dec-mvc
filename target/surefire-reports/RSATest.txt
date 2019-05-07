@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: RSATest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.875 s - in RSATest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.952 s - in RSATest

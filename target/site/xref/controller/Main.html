@@ -20,12 +20,12 @@
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="Main" href="../controller/Main.html#Main">Main</a> <strong class="jxr_keyword">extends</strong> Application {
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>      @Override
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> start(Stage primaryStage) <strong class="jxr_keyword">throws</strong> Exception{
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> start(Stage primaryStage) <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>          Parent root = FXMLLoader.load(getClass().getResource(<span class="jxr_string">"/JFX/scene.fxml"</span>));
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>          primaryStage.setTitle(<span class="jxr_string">"Encrypt-Decrypt"</span>);
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>          primaryStage.setScene(<strong class="jxr_keyword">new</strong> Scene(root, 1280, 800));
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>          Platform.runLater(root::requestFocus);
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>          primaryStage.setOnCloseRequest(e-&gt;OperationDAO.close());
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>          primaryStage.setOnCloseRequest(e -&gt; OperationDAO.close());
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>          primaryStage.show();
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>      }
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  
