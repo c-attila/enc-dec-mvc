@@ -1,4 +1,5 @@
-GCDTest.class
-primalityTestTest.class
 RSATest.class
 ExponentiationTest.class
+GCDTest.class
+primalityTestTest.class
+EncDecTest.class
