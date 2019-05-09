@@ -5,11 +5,14 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.DAO.Operation;
 import model.DAO.OperationDAO;
 
 public class Main extends Application {
+
+    private static Stage pStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -19,6 +22,15 @@ public class Main extends Application {
         Platform.runLater(root::requestFocus);
         primaryStage.setOnCloseRequest(e -> OperationDAO.close());
         primaryStage.show();
+        pStage = primaryStage;
+    }
+
+    public static Stage getPrimaryStage() {
+        return pStage;
+    }
+
+    public static void setPrimaryStage(Stage pStage) {
+        Main.pStage = pStage;
     }
 
     public static void main(String[] args) {

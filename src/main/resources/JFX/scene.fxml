@@ -34,7 +34,7 @@
                </font></Label>
             <Separator layoutX="169.0" layoutY="283.0" prefHeight="3.0" prefWidth="811.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="266.0" />
             <Separator layoutX="198.0" layoutY="416.0" prefWidth="200.0" AnchorPane.bottomAnchor="266.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <TextField fx:id="encPath" layoutX="295.0" layoutY="111.0" prefHeight="25.0" prefWidth="722.0" />
+            <TextField fx:id="encPath" layoutX="295.0" layoutY="111.0" prefHeight="25.0" prefWidth="680.0" />
             <Label layoutX="117.0" layoutY="170.0" prefHeight="30.0" prefWidth="169.0" text="Password for encryption:">
                <font>
                   <Font size="14.0" />
@@ -50,7 +50,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="decPath" layoutX="295.0" layoutY="388.0" prefHeight="25.0" prefWidth="722.0" />
+            <TextField fx:id="decPath" layoutX="295.0" layoutY="388.0" prefHeight="25.0" prefWidth="680.0" />
             <Label layoutX="115.0" layoutY="453.0" prefHeight="30.0" prefWidth="169.0" text="Password for decryption:">
                <font>
                   <Font size="14.0" />
@@ -66,6 +66,8 @@
             <Button fx:id="encrypt" layoutX="586.0" layoutY="173.0" mnemonicParsing="false" onAction="#encryptAction" prefHeight="25.0" prefWidth="62.0" text="Encrypt" />
             <Button fx:id="decrypt" layoutX="586.0" layoutY="455.0" mnemonicParsing="false" onAction="#decryptAction" prefHeight="25.0" prefWidth="62.0" text="Decrypt" />
             <Button fx:id="generate" layoutX="903.0" layoutY="680.0" mnemonicParsing="false" onAction="#generateAction" prefHeight="25.0" prefWidth="76.0" text="Generate" />
+            <Button fx:id="setEncPath" layoutX="1007.0" layoutY="111.0" mnemonicParsing="false" onAction="#setEncPathAction" prefHeight="25.0" prefWidth="75.0" text="Choose file" />
+            <Button fx:id="setDecPath" layoutX="1007.0" layoutY="388.0" mnemonicParsing="false" onAction="#setDecPathAction" text="Choose file" />
          </children></AnchorPane>
    </children>
 </GridPane>
