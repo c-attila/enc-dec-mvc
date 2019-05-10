@@ -17,8 +17,20 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+import controller.Main;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import javafx.stage.Popup;
+import javafx.scene.text.Text;
 
 /**
  * Class for file encryption.
@@ -148,6 +160,7 @@ public class FileEncryption {
             return new FileInputStream(inputPath);
         } catch (FileNotFoundException e) {
             logger.error("File note found.");
+            showPopupWindow("File not found.");
             return null;
         } catch (Exception e) {
             logger.error("File couldn't be located. Exception: " + e);
@@ -171,6 +184,23 @@ public class FileEncryption {
             logger.error("Incorrect file path. Exception: " + e);
             return null;
         }
+    }
+
+    /**
+     * Shows a popup window with the given text.
+     *
+     * @param text the given text to be wn in the window.
+     */
+     static void showPopupWindow(String text) {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(Main.getPrimaryStage());
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text(text));
+        dialogVbox.setAlignment(Pos.CENTER);
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
     }
 
     /**
@@ -250,6 +280,7 @@ public class FileEncryption {
         outFileStream.close();
 
         logger.info("File Encrypted.");
+        showPopupWindow("File Encrypted.");
     }
 
     public static void main(String[] args) throws Exception {

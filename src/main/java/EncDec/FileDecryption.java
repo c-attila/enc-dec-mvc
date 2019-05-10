@@ -145,6 +145,7 @@ public class FileDecryption {
             return new FileInputStream(inputPath);
         } catch (FileNotFoundException e) {
             logger.error("File note found.");
+            FileEncryption.showPopupWindow("File not found.");
             return null;
         } catch (Exception e) {
             logger.error("File couldn't be located. Exception: " + e);
@@ -242,6 +243,7 @@ public class FileDecryption {
             output = cipher.doFinal();
         } catch (BadPaddingException e) {
             logger.error("Incorrect password.");
+            FileEncryption.showPopupWindow("Incorrect password.");
             return;
         } catch (Exception e) {
             logger.error("Unable to decrypt the file, exception: " + e);
@@ -255,6 +257,7 @@ public class FileDecryption {
         outFileStream.close();
 
         logger.info("File Decrypted.");
+        FileEncryption.showPopupWindow("File Decrypted.");
     }
 
     public static void main(String[] args) throws Exception {
