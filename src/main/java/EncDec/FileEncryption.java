@@ -158,9 +158,13 @@ public class FileEncryption {
     private static FileInputStream getInputFileStream(String inputPath) {
         try {
             return new FileInputStream(inputPath);
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException fileNotFoundEx) {
             logger.error("File note found.");
-            showPopupWindow("File not found.");
+            try {
+                showPopupWindow("File not found.");
+            } catch (Exception e) {
+                logger.debug("Unable to display popup windows. Exception: " + e);
+            }
             return null;
         } catch (Exception e) {
             logger.error("File couldn't be located. Exception: " + e);
@@ -191,7 +195,7 @@ public class FileEncryption {
      *
      * @param text the given text to be wn in the window.
      */
-     static void showPopupWindow(String text) {
+    static void showPopupWindow(String text) throws Exception {
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(Main.getPrimaryStage());
@@ -280,7 +284,11 @@ public class FileEncryption {
         outFileStream.close();
 
         logger.info("File Encrypted.");
-        showPopupWindow("File Encrypted.");
+        try {
+            showPopupWindow("File Encrypted.");
+        } catch (Exception e) {
+            logger.debug("Unable to display popup windows. Exception: " + e);
+        }
     }
 
     public static void main(String[] args) throws Exception {

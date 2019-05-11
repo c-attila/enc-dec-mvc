@@ -143,9 +143,13 @@ public class FileDecryption {
     private static FileInputStream getInputFileStream(String inputPath) {
         try {
             return new FileInputStream(inputPath);
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException fileNotFoundEx) {
             logger.error("File note found.");
-            FileEncryption.showPopupWindow("File not found.");
+            try {
+                FileEncryption.showPopupWindow("File not found.");
+            } catch (Exception e) {
+                logger.debug("Unable to display popup windows. Exception: " + e);
+            }
             return null;
         } catch (Exception e) {
             logger.error("File couldn't be located. Exception: " + e);
@@ -223,9 +227,9 @@ public class FileDecryption {
     /**
      * Writes out the decrypted file.
      *
-     * @param inFileStream the input file
+     * @param inFileStream  the input file
      * @param outFileStream the output file
-     * @param cipher the cipher
+     * @param cipher        the cipher
      * @throws IOException
      */
     private static void writeDecrypted(FileInputStream inFileStream, FileOutputStream outFileStream, Cipher cipher)
@@ -241,9 +245,13 @@ public class FileDecryption {
         byte[] output;
         try {
             output = cipher.doFinal();
-        } catch (BadPaddingException e) {
+        } catch (BadPaddingException badPaddingEx) {
             logger.error("Incorrect password.");
-            FileEncryption.showPopupWindow("Incorrect password.");
+            try {
+                FileEncryption.showPopupWindow("Incorrect password.");
+            } catch (Exception e) {
+                logger.debug("Unable to display popup windows. Exception: " + e);
+            }
             return;
         } catch (Exception e) {
             logger.error("Unable to decrypt the file, exception: " + e);
@@ -257,7 +265,11 @@ public class FileDecryption {
         outFileStream.close();
 
         logger.info("File Decrypted.");
-        FileEncryption.showPopupWindow("File Decrypted.");
+        try {
+            FileEncryption.showPopupWindow("File Decrypted.");
+        } catch (Exception e) {
+            logger.debug("Unable to display popup windows. Exception: " + e);
+        }
     }
 
     public static void main(String[] args) throws Exception {

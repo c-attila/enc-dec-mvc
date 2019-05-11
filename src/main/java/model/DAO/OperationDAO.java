@@ -1,5 +1,11 @@
 package model.DAO;
 
+import EncDec.FileEncryption;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.hibernate.exception.JDBCConnectionException;
+import org.hibernate.service.spi.ServiceException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -11,6 +17,11 @@ import java.util.List;
  */
 public class OperationDAO {
 
+    /**
+     * <code>Logger</code> instance for logging.
+     */
+    private static Logger logger = LogManager.getLogger(FileEncryption.class);
+
     private static EntityManagerFactory emf;
     private static EntityManager em;
 
@@ -18,8 +29,12 @@ public class OperationDAO {
      * Initializes the DAO.
      */
     public OperationDAO() {
-        emf = Persistence.createEntityManagerFactory("jpa-persistence-unit-1");
-        em = emf.createEntityManager();
+        try {
+            emf = Persistence.createEntityManagerFactory("jpa-persistence-unit-1");
+            em = emf.createEntityManager();
+        } catch (ServiceException e) {
+            logger.warn("Connection couldn't be established. Exception: " + e);
+        }
     }
 
     /**
@@ -28,9 +43,17 @@ public class OperationDAO {
      * @param operation the operation to be saved
      */
     public void saveOperation(Operation operation) {
-        em.getTransaction().begin();
-        em.persist(operation);
-        em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            em.persist(operation);
+            em.getTransaction().commit();
+        } catch (NullPointerException e) {
+            logger.warn("Connection not found. Exception: " + e);
+            emf = Persistence.createEntityManagerFactory("jpa-persistence-unit-1");
+            em = emf.createEntityManager();
+        } catch (JDBCConnectionException e) {
+            logger.warn("Connection not found. Exception: " + e);
+        }
     }
 
     /**
@@ -40,7 +63,15 @@ public class OperationDAO {
      * @return a <code>List</code> of operations
      */
     public List<Operation> readOperationHistory(String operationType) {
-        TypedQuery<Operation> query = em.createQuery("SELECT o FROM Operation o WHERE o.operationType'" + operationType + "'", Operation.class);
+        TypedQuery<Operation> query;
+        try {
+            query = em.createQuery("SELECT o FROM Operation o WHERE o.operationType'" + operationType + "'", Operation.class);
+        } catch (NullPointerException e) {
+            logger.warn("Connection not found. Exception: " + e);
+            emf = Persistence.createEntityManagerFactory("jpa-persistence-unit-1");
+            em = emf.createEntityManager();
+            return null;
+        }
 
         return query.getResultList();
     }
@@ -52,7 +83,15 @@ public class OperationDAO {
      * @return a <code>List</code> of operations
      */
     public List<Operation> readFileHistory(String path) {
-        TypedQuery<Operation> query = em.createQuery("SELECT o FROM Operation o WHERE o.path'" + path + "'", Operation.class);
+        TypedQuery<Operation> query;
+        try {
+            query = em.createQuery("SELECT o FROM Operation o WHERE o.path'" + path + "'", Operation.class);
+        } catch (NullPointerException e) {
+            logger.warn("Connection not found. Exception: " + e);
+            emf = Persistence.createEntityManagerFactory("jpa-persistence-unit-1");
+            em = emf.createEntityManager();
+            return null;
+        }
 
         return query.getResultList();
     }
@@ -61,7 +100,11 @@ public class OperationDAO {
      * Closes the entity.
      */
     public static void close() {
-        em.close();
-        emf.close();
+        try {
+            em.close();
+            emf.close();
+        } catch (NullPointerException e) {
+            logger.warn("Connection not found. Exception: " + e);
+        }
     }
 }
