@@ -1,10 +1,13 @@
 package model;
 
-import EncDec.FileEncryption;
+import encdec.FileEncryption;
+import controller.Main;
 import model.DAO.Operation;
 import model.DAO.OperationDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.FileNotFoundException;
 
 /**
  * Represents the model of the <code>MVC</code> application.
@@ -36,9 +39,14 @@ public class Model {
         dao.saveOperation(operation);
 
         try {
-            EncDec.FileEncryption.encryptFile(encPath, encPass);
+            encdec.FileEncryption.encryptFile(encPath, encPass);
+
+            logger.info("File Encrypted.");
+            Main.showPopupWindow("File Encrypted.");
+        } catch (FileNotFoundException fileNotFoundEx) {
+            logger.error("File not found.");
+            Main.showPopupWindow("File not found.");
         } catch (Exception e) {
-            e.printStackTrace();
             logger.error("encryptFile exception");
         }
     }
@@ -57,9 +65,14 @@ public class Model {
         dao.saveOperation(operation);
 
         try {
-            EncDec.FileDecryption.decryptFile(decPath, decPass);
+            encdec.FileDecryption.decryptFile(decPath, decPass);
+
+            logger.info("File Decrypted.");
+            Main.showPopupWindow("File Decrypted.");
+        } catch (FileNotFoundException fileNotFoundEx) {
+            logger.error("File not found.");
+            Main.showPopupWindow("File not found.");
         } catch (Exception e) {
-            e.printStackTrace();
             logger.error("decryptFile exception");
         }
     }
@@ -76,6 +89,6 @@ public class Model {
 
         dao.saveOperation(operation);
 
-        return RSA.RSA.getRandomKeys();
+        return rsa.RSA.getRandomKeys();
     }
 }

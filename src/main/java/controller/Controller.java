@@ -1,6 +1,6 @@
 package controller;
 
-import EncDec.FileEncryption;
+import encdec.FileEncryption;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
@@ -24,7 +24,7 @@ public class Controller implements Initializable {
     /**
      * <code>Logger</code> instance for logging.
      */
-    private static Logger logger = LogManager.getLogger(FileEncryption.class);
+    private static Logger logger = LogManager.getLogger(Controller.class);
     private FileChooser fileChooser = new FileChooser();
 
     private Model model;
@@ -51,11 +51,13 @@ public class Controller implements Initializable {
 
     @FXML
     private void setEncPathAction(javafx.event.ActionEvent actionEvent) {
+
         File selectedFile = fileChooser.showOpenDialog(Main.getPrimaryStage());
+
         try {
             encPath.setText(selectedFile.getPath());
         } catch (NullPointerException e) {
-            logger.debug("Selected file path was empty.");
+            logger.debug("Selected file path was empty.", e);
         }
     }
 
@@ -66,11 +68,13 @@ public class Controller implements Initializable {
 
     @FXML
     private void setDecPathAction(javafx.event.ActionEvent actionEvent) {
+
         File selectedFile = fileChooser.showOpenDialog(Main.getPrimaryStage());
+
         try {
             decPath.setText(selectedFile.getPath());
         } catch (NullPointerException e) {
-            logger.debug("Selected file path was empty.");
+            logger.debug("Selected file path was empty.", e);
         }
     }
 
@@ -80,8 +84,7 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Called to initialize a controller after its root element has been
-     * completely processed.
+     * Called to initialize a controller after its root element has been completely processed.
      *
      * @param location  The location used to resolve relative paths for the root object, or
      *                  {@code null} if the location is not known.

@@ -1,6 +1,5 @@
 package model.DAO;
 
-import EncDec.FileEncryption;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.exception.JDBCConnectionException;
@@ -20,7 +19,7 @@ public class OperationDAO {
     /**
      * <code>Logger</code> instance for logging.
      */
-    private static Logger logger = LogManager.getLogger(FileEncryption.class);
+    private static Logger logger = LogManager.getLogger(OperationDAO.class);
 
     private static EntityManagerFactory emf;
     private static EntityManager em;
@@ -63,6 +62,7 @@ public class OperationDAO {
      * @return a <code>List</code> of operations
      */
     public List<Operation> readOperationHistory(String operationType) {
+
         TypedQuery<Operation> query;
         try {
             query = em.createQuery("SELECT o FROM Operation o WHERE o.operationType'" + operationType + "'", Operation.class);
@@ -83,6 +83,7 @@ public class OperationDAO {
      * @return a <code>List</code> of operations
      */
     public List<Operation> readFileHistory(String path) {
+
         TypedQuery<Operation> query;
         try {
             query = em.createQuery("SELECT o FROM Operation o WHERE o.path'" + path + "'", Operation.class);

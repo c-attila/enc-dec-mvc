@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * An <code>object</code> that represents operations.
+ * An <code>object</code> that represents an operation.
  */
 @Entity
 @Table(name = "Operation")
@@ -15,22 +15,22 @@ public class Operation {
     private int id;
 
     /**
-     * An operation that was made. Can be file encryption, file decryption or RSA key generation.
+     * An operation that was done. Can be file encryption, file decryption or rsa key generation.
      */
-    @Column(name = "Operation_type")
+    @Column(name = "operationType")
     private String operationType;
 
     /**
-     * The file on which the operation was made.
+     * The file on which the operation was done.
      * - symbol if the operation was key generation.
      */
-    @Column(name = "File")
+    @Column(name = "file")
     private String path;
 
     /**
      * The date and time of the operation.
      */
-    @Column(name = "Date")
+    @Column(name = "date")
     private java.sql.Timestamp date;
 
     public Operation(String operationType, String path, Timestamp date) {

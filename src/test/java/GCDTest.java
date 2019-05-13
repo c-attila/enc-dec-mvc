@@ -1,5 +1,6 @@
-import RSA.GCD;
+import rsa.GCD;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 import java.math.BigInteger;

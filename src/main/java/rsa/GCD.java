@@ -1,4 +1,4 @@
-package RSA;
+package rsa;
 
 import java.math.BigInteger;
 
@@ -27,7 +27,7 @@ public class GCD {
      * @param e second parameter of the EEA
      * @return the length for the EEA table
      */
-    static int getLength(BigInteger r, BigInteger e) {
+    private static int getLength(BigInteger r, BigInteger e) {
         int n = 0;
         BigInteger etemp;
         while (e.compareTo(BigInteger.ZERO) > 0) {

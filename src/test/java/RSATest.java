@@ -1,4 +1,4 @@
-import RSA.RSA;
+import rsa.RSA;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

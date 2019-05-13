@@ -2,8 +2,12 @@ package controller;
 
 public class AppLauncher {
 
-    public static void main(String[] args)
-    {
+    /**
+     * Launches the JavaFX application.
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
         Main.main(args);
     }
 }

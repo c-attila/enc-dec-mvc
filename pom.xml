@@ -6,7 +6,7 @@
 
     <groupId>EncDec</groupId>
     <artifactId>EncDecMVC</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -17,7 +17,7 @@
         <basedir>EncDecMVC</basedir>
     </properties>
     <name>Encrypting-Decrypting</name>
-    <description>An effective application to encrypt/decrypt files and to generate RSA keys.</description>
+    <description>An effective application to encrypt/decrypt files and to generate rsa keys.</description>
 
     <developers>
         <developer>
@@ -126,9 +126,6 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.2</version>
-                <configuration>
-                    <mainClass>org.openjfx.App</mainClass>
-                </configuration>
             </plugin>
 
             <plugin>
