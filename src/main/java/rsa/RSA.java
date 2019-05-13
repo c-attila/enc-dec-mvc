@@ -72,7 +72,6 @@ public class RSA {
             EEtable = rsa.GCD.getTable(fin, e);
         } while ((e.compareTo(fin) >= 0 || e.compareTo(BigInteger.ONE) <= 0) || !(EEtable[0][EEtable[0].length - 1]).equals(BigInteger.ONE));
 
-        //BigInteger d = e.modInverse(fin);
         BigInteger d = EEtable[3][EEtable[3].length - 1];
         while (d.compareTo(BigInteger.ZERO) < 0)
             d = d.add(fin);
