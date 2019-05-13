@@ -18,6 +18,11 @@
     </properties>
     <name>Encrypting-Decrypting</name>
     <description>An effective application to encrypt/decrypt files and to generate rsa keys.</description>
+    <scm>
+        <url>https://github.com/c-attila/enc-dec-mvc</url>
+        <connection>scm:git:git://https://github.com/c-attila/enc-dec-mvc.git</connection>
+        <developerConnection>scm:git:git@github.com:c-attila/enc-dec-mvc.git</developerConnection>
+    </scm>
 
     <developers>
         <developer>
