@@ -73,8 +73,8 @@ public class EncDecTest {
     @Test
     public void testAudioFile() throws IOException {
 
-        final File original = new File(getClass().getResource("Starset-It_has_begun-original.mp3").getFile());
-        final File copy = new File(getClass().getResource("Starset-It_has_begun-copy.mp3").getFile());
+        final File original = new File(getClass().getResource("The_Impossible-Savfk-original.mp3").getFile());
+        final File copy = new File(getClass().getResource("The_Impossible-Savfk-copy.mp3").getFile());
         FileUtils.copyFile(original, copy);
 
         try {
@@ -86,7 +86,7 @@ public class EncDecTest {
 
         try {
             System.out.println("Decrypting");
-            File encCopy = new File(getClass().getResource("Starset-It_has_begun-copy.mp3" + ".enc").getFile());
+            File encCopy = new File(getClass().getResource("The_Impossible-Savfk-copy.mp3" + ".enc").getFile());
             System.out.println("encCopy file created" + encCopy.getPath());
             encdec.FileDecryption.decryptFile(encCopy.getPath(), "test");
         } catch (NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException | InvalidAlgorithmParameterException | InvalidKeyException e) {
