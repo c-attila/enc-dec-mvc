@@ -1,8 +1,9 @@
 import org.apache.commons.io.FileUtils;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -96,13 +97,17 @@ public class EncDecTest {
         assertTrue(FileUtils.contentEquals(original, copy));
     }
 
-    @Test(expected = FileNotFoundException.class)
+    @Test
     public void testWrongFilePathEncryption() throws Exception {
-        encdec.FileEncryption.encryptFile("test", "test");
+        Assertions.assertThrows(FileNotFoundException.class, () -> {
+            encdec.FileEncryption.encryptFile("test", "test");
+        });
     }
 
-    @Test(expected = FileNotFoundException.class)
+    @Test
     public void testWrongFilePathDecryption() throws Exception {
-        encdec.FileDecryption.decryptFile("test", "test");
+        Assertions.assertThrows(FileNotFoundException.class, () -> {
+            encdec.FileDecryption.decryptFile("test", "test");
+        });
     }
 }

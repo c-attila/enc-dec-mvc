@@ -1,9 +1,10 @@
+import org.junit.jupiter.api.Test;
 import rsa.PrimalityTest;
-import org.junit.Test;
 
 import java.math.BigInteger;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class primalityTestTest {
 

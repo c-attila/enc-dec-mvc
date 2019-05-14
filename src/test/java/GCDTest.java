@@ -1,16 +1,18 @@
+import org.junit.jupiter.api.Assertions;
 import rsa.GCD;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigInteger;
 
 public class GCDTest {
 
-    @Test(expected = ArithmeticException.class)
+    @Test
     public void gcdWithBothZeroValuesNotDefined() {
-        BigInteger[][] table = GCD.getTable(BigInteger.ZERO, BigInteger.ZERO);
-        assertEquals(BigInteger.ZERO, table[0][table[0].length - 1]);
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            GCD.getTable(BigInteger.ZERO, BigInteger.ZERO);
+        });
     }
 
     @Test

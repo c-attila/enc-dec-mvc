@@ -1,9 +1,12 @@
+import org.junit.jupiter.api.Assertions;
 import rsa.Exponentiation;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigInteger;
+
+import org.junit.jupiter.api.Test;
+
 
 public class ExponentiationTest {
 
@@ -13,12 +16,20 @@ public class ExponentiationTest {
         assertEquals(BigInteger.ZERO, Exponentiation.getRemainder(BigInteger.ZERO, BigInteger.TWO, BigInteger.TEN));
     }
 
-    @Test(expected = ArithmeticException.class)
+    @Test
     public void modulusOfTheExponentiationShouldBePositive() {
-        assertEquals(BigInteger.ZERO, Exponentiation.modPower(BigInteger.TWO, BigInteger.TWO, BigInteger.ZERO));
-        assertEquals(BigInteger.ZERO, Exponentiation.getRemainder(BigInteger.TWO, BigInteger.TWO, BigInteger.ZERO));
-        assertEquals(BigInteger.ZERO, Exponentiation.modPower(BigInteger.TWO, BigInteger.TWO, BigInteger.valueOf(-1)));
-        assertEquals(BigInteger.ZERO, Exponentiation.getRemainder(BigInteger.TWO, BigInteger.TWO, BigInteger.valueOf(-1)));
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            Exponentiation.modPower(BigInteger.TWO, BigInteger.TWO, BigInteger.ZERO);
+        });
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            Exponentiation.getRemainder(BigInteger.TWO, BigInteger.TWO, BigInteger.ZERO);
+        });
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            Exponentiation.modPower(BigInteger.TWO, BigInteger.TWO, BigInteger.valueOf(-1));
+        });
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            Exponentiation.getRemainder(BigInteger.TWO, BigInteger.TWO, BigInteger.valueOf(-1));
+        });
     }
 
     @Test
