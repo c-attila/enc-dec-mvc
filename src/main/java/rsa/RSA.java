@@ -172,7 +172,7 @@ public class RSA {
         for (int i = 0; i < c.length; i++) {
             cp = rsa.Exponentiation.modPower(c[i], d.mod(p.subtract(BigInteger.ONE)), p);
             cq = rsa.Exponentiation.modPower(c[i], d.mod(q.subtract(BigInteger.ONE)), q);
-            c[i] = (p.multiply(table[2][table[2].length - 1]).multiply(cp)).add(q.multiply(table[3][table[3].length - 1]).multiply(cq)).mod(BigInteger.valueOf(1457));
+            c[i] = (p.multiply(table[2][table[2].length - 1]).multiply(cp)).add(q.multiply(table[3][table[3].length - 1]).multiply(cq)).mod(BigInteger.valueOf(p*q));
         }
 
         return c;
